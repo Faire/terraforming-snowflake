@@ -1,4 +1,4 @@
-# Terraforming Snowflake
+# :snowflake: Terraforming Snowflake
 ## Overview
 What the code does: Before running anything you'll notice the `snowflake` folder only has `main.tf`. Running the `terraformer` python script will:
 1. Generate new `.tf` files in the `snowflake` folder
@@ -6,7 +6,7 @@ What the code does: Before running anything you'll notice the `snowflake` folder
 
 DISCLAIMER: **_All_** of the generated files (`*.tf` files and `tf_snowflake_import_resources.sh`) are built in "append" mode. If you rerun the script, it will re-append to the same files, causing duplicates. This was an intentional choice, as duplicates were safer than overwriting.
 
-## 1. Scraper
+## 1. :suspect: Scraper
 ### Pre-requisite steps:
 1. Clone this repo to your local machine
 2. set up your python environment, make sure to `pip install -r terraformer/requirements.txt`
@@ -23,7 +23,7 @@ DISCLAIMER: **_All_** of the generated files (`*.tf` files and `tf_snowflake_imp
 1. Run the command `python terraformer.py`
 2. Watch everything populate!
 
-## 2. Building your `tfstate`
+## 2. :rage1: Building your `tfstate`
 1. Before running any import statements, you may want to modularize a bit, adding some `for_each` loops or some sub-modules.
     a) this may include renaming some number of pre-existing resources in your Snowflake instance, so they "terra-conform" (groan)
     b) introducing `for_each` means you'll also need to modify the associated `terraform import` statement a little. Don't be afraid to experiment! I threw away tfstates and re-scraped / regenerated it more times than I could keep track.
@@ -34,7 +34,7 @@ DISCLAIMER: **_All_** of the generated files (`*.tf` files and `tf_snowflake_imp
 4. You can see how you're doing by running a quick `terraform plan`, you'll see how it uses the tfstate you built! Use `plan`s to fix all the discrepancies. 
     * **Don't run `terraform apply` at this stage, you will very likely destroy things**
 
-## 3. Setting up Terraform
+## 3. :godmode: Setting up Terraform
 1. Create Snowflake account that Terraform can use 
 2. You'll want a secure S3 bucket / GCP bucket / Blob that not many people have access to besides the admins
     a) tfstates contain secrets (snowflake password for the account mentioned in step 1) which _must_ be stored securely
@@ -42,7 +42,7 @@ DISCLAIMER: **_All_** of the generated files (`*.tf` files and `tf_snowflake_imp
 4. ideally have a Pull Request bot which actually does the `apply`ing for you in your PRs once they've been approved / meet your merge criteria
 5. Make sure to configure `main.tf` and `params-default.json` accordingly, so Terraform knows where to look for tfstate / locks
 
-# Appendix
+# :notebook_with_decorative_cover: Appendix
 ### Installing the provider on an M1
 Terraform provider installation on M1 macs was inconvenient -- there was no compiled binary for Darwin/arm64 (Apple M1), how to install it:
 m1-terraform-provider-helper is awesome, but the `m1-terraform-provider-helper install snowflake-labs/snowflake -v "v0.36.0"` didn't work for me, so I compiled it myself and dropped it into Terraform's local cache directory (exactly what m1-terraform-provider-helper normally does, but there seems to be something going on)
