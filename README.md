@@ -34,7 +34,7 @@ DISCLAIMER: **_All_** of the generated files (`*.tf` files and `tf_snowflake_imp
 4. You can see how you're doing by running a quick `terraform plan`, you'll see how it uses the tfstate you built! Use `plan`s to fix all the discrepancies. 
     * **Don't run `terraform apply` at this stage, you will very likely destroy things**
 
-s
+
 ## 3. :shipit: Setting up Terraform
 1. Create Snowflake account that Terraform can use 
 2. You'll want a secure S3 bucket / GCP bucket / Blob that not many people have access to besides the admins
