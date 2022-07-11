@@ -17,6 +17,7 @@ DISCLAIMER: **_All_** of the generated files (`*.tf` files and `tf_snowflake_imp
 4. Have a Snowflake account you can use Username / Password auth with, and make sure you've properly set all environment variables
     a) `SNOWFLAKE_USER`
     b) `SNOWFLAKE_PASSWORD`
+5. Optional step, navigate to the root of the repository and run `make setup-pre-commit` to set up pre-commit hooks for autoformatting your terraform code
 
 ### Steps
 1. Run the command `python terraformer.py`

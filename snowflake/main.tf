@@ -36,9 +36,9 @@ data "aws_ssm_parameter" "snowflake_terraform_pwd" {
 
 // SYSADMIN is default because it doesn't have an alias
 provider "snowflake" {
-  role     = "SYSADMIN"
-  account  = local.params.snowflake_account
-  region   = local.params.snowflake_region
+  role    = "SYSADMIN"
+  account = local.params.snowflake_account
+  region  = local.params.snowflake_region
   // When testing locally, comment these out and have the 
   // environment variables SNOWFLAKE_USER and SNOWFLAKE_PASSWORD set
   //username = data.aws_ssm_parameter.snowflake_terraform_uid.value
@@ -47,10 +47,10 @@ provider "snowflake" {
 
 // can use `provider = security_admin` in a resource where required (some grants)
 provider "snowflake" {
-  role     = "SECURITYADMIN"
-  alias    = "security_admin"
-  account  = local.params.snowflake_account
-  region   = local.params.snowflake_region
+  role    = "SECURITYADMIN"
+  alias   = "security_admin"
+  account = local.params.snowflake_account
+  region  = local.params.snowflake_region
   // When testing locally, comment these out and have the 
   // environment variables SNOWFLAKE_USER and SNOWFLAKE_PASSWORD set
   //username = data.aws_ssm_parameter.snowflake_terraform_uid.value
