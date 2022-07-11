@@ -1,0 +1,6 @@
+{
+    "snowflake_terraform_uid_paramstore": "/path/to/secret",
+    "snowflake_terraform_pwd_paramstore": "/path/to/secret",
+    "snowflake_account": "your-snowflake-account",
+    "snowflake_region" : "your-aws-region"
+}
