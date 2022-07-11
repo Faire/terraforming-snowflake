@@ -6,7 +6,7 @@ What the code does: Before running anything you'll notice the `snowflake` folder
 
 DISCLAIMER: **_All_** of the generated files (`*.tf` files and `tf_snowflake_import_resources.sh`) are built in "append" mode. If you rerun the script, it will re-append to the same files, causing duplicates. This was an intentional choice, as duplicates were safer than overwriting.
 
-## 1. :suspect: Scraper
+## 1. :flashlight: Scraper
 ### Pre-requisite steps:
 1. Clone this repo to your local machine
 2. set up your python environment, make sure to `pip install -r terraformer/requirements.txt`
@@ -18,12 +18,12 @@ DISCLAIMER: **_All_** of the generated files (`*.tf` files and `tf_snowflake_imp
     a) `SNOWFLAKE_USER`
     b) `SNOWFLAKE_PASSWORD`
 
-
 ### Steps
 1. Run the command `python terraformer.py`
 2. Watch everything populate!
 
-## 2. :rage1: Building your `tfstate`
+
+## 2. :hammer: Building your `tfstate`
 1. Before running any import statements, you may want to modularize a bit, adding some `for_each` loops or some sub-modules.
     a) this may include renaming some number of pre-existing resources in your Snowflake instance, so they "terra-conform" (groan)
     b) introducing `for_each` means you'll also need to modify the associated `terraform import` statement a little. Don't be afraid to experiment! I threw away tfstates and re-scraped / regenerated it more times than I could keep track.
@@ -34,7 +34,8 @@ DISCLAIMER: **_All_** of the generated files (`*.tf` files and `tf_snowflake_imp
 4. You can see how you're doing by running a quick `terraform plan`, you'll see how it uses the tfstate you built! Use `plan`s to fix all the discrepancies. 
     * **Don't run `terraform apply` at this stage, you will very likely destroy things**
 
-## 3. :godmode: Setting up Terraform
+s
+## 3. :shipit: Setting up Terraform
 1. Create Snowflake account that Terraform can use 
 2. You'll want a secure S3 bucket / GCP bucket / Blob that not many people have access to besides the admins
     a) tfstates contain secrets (snowflake password for the account mentioned in step 1) which _must_ be stored securely
