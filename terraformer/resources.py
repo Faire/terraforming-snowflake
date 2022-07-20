@@ -12,6 +12,7 @@ logging.basicConfig(level=logging.WARN)
 escape = lambda s: s.encode("unicode_escape").decode("utf-8")
 
 def stringify(obj, surround=True):
+    # turns a data structure into a string that complies with terraform syntax
     if isinstance(obj, str):
         return (f'"{obj}"' if surround else obj) if obj else ""
     elif isinstance(obj, type(None)):
