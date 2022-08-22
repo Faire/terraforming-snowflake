@@ -1,0 +1,7 @@
+{
+    "snowflake_terraform_uid_paramstore": "/path/to/secret (this isn't used unless you set it up in main.tf)",
+    "snowflake_terraform_pwd_paramstore": "/path/to/secret (same situation as above)",
+    "snowflake_default_role": "SYSADMIN",
+    "snowflake_account": "your-snowflake-account",
+    "snowflake_region" : "your-aws-region"
+}

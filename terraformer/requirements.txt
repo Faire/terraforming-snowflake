@@ -1,0 +1,7 @@
+python-terraform==0.10.1
+pandas==1.4.3
+snowflake==0.0.3
+pyarrow==8.0.0
+snowflake-connector-python==2.7.9
+SQLAlchemy==1.4.39
+snowflake-sqlalchemy==1.3.4
