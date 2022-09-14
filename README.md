@@ -97,19 +97,20 @@ DISCLAIMER: **_All_** of the generated files (`*.tf` files and `tf_snowflake_imp
 
 ## Installing the provider on an M1
 Terraform provider installation on M1 macs was inconvenient -- there was no compiled binary for Darwin/arm64 (Apple M1), how to install it:
-m1-terraform-provider-helper is awesome, but the `m1-terraform-provider-helper install snowflake-labs/snowflake -v "v0.36.0"` didn't work for me, so I compiled it myself and dropped it into Terraform's local cache directory (exactly what m1-terraform-provider-helper normally does, but there seems to be something going on)
 
 ```bash
 mkdir -p ~/development
 cd ~/development
-git clone git@github.com:Snowflake-Labs/terraform-provider-snowflake.git
-cd terraform-provider-snowflake
-git checkout v0.36.0
-go build -ldflags "-w -s -X github.com/chanzuckerberg/go-misc/ver.GitSha=d055d4c -X github.com/chanzuckerberg/go-misc/ver.Dirty=false" -o terraform-provider-snowflake .
-mkdir -p ~/.terraform.d/plugins/registry.terraform.io/snowflake-labs/snowflake/0.36.0/darwin_arm64/terraform-provider-snowflake_0.36.0_x5
-mv terraform-provider-snowflake ~/.terraform.d/plugins/registry.terraform.io/snowflake-labs/snowflake/0.36.0/darwin_arm64/terraform-provider-snowflake_0.36.0_x5
-# snowflake-labs/snowflake version 0.36.0 should be available for use in terraform now
+git clone git@github.com:Faire/terraforming-snowflake.git
+cd terraforming-snowflake/snowflake
+
+brew uninstall m1-terraform-provider-helper
+brew install m1-terraform-provider-helper
+m1-terraform-provider-helper install snowflake-labs/snowflake -v "v0.43.0"
+
+terraform init
+
+# snowflake-labs/snowflake version 0.43.0 should be available for use in terraform now
 # If you want to install a different version, try using m1-terraform-provider-helper 
-#  first. If it doesn't work, you can get the gritty details above by paying attention
-#  to the commands that `m1-terraform-provider-helper` tries running
+# to install the different version
 ```
