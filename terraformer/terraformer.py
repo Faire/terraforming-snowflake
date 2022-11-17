@@ -190,9 +190,9 @@ def tf_warehouses(t):
         "state",
         "type",
         "size",
-        "min_cluster_count",
-        "max_cluster_count",
-        "started_clusters",
+        # "min_cluster_count",
+        # "max_cluster_count",
+        # "started_clusters",
         "running",
         "queued",
         "is_default",
@@ -214,7 +214,7 @@ def tf_warehouses(t):
         "failed",
         "suspended",
         "uuid",
-        "scaling_policy",
+        # "scaling_policy",
     ]
     wh_dicts = [{k: row[i] for i, k in enumerate(columns)} for row in wh_data]
     for row in wh_dicts:
@@ -327,8 +327,8 @@ if __name__ == "__main__":
     # t.init()
 
     database_names = tf_databases(t)
-    # tf_file_format(t, database_names)
-    # database_schemas = tf_schemas(t, database_names)
-    # tf_stages(t, database_names)
-    # tf_warehouses(t)
+    tf_file_format(t, database_names)
+    database_schemas = tf_schemas(t, database_names)
+    tf_stages(t, database_names)
+    tf_warehouses(t)
     tf_pipes(t, database_names)
