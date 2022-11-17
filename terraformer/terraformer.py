@@ -333,8 +333,8 @@ if __name__ == "__main__":
     # t.init()
 
     database_names = tf_databases(t)
-    # tf_file_format(t, database_names)
-    # database_schemas = tf_schemas(t, database_names)
-    # tf_stages(t, database_names)
-    # tf_warehouses(t)
+    tf_file_format(t, database_names)
+    database_schemas = tf_schemas(t, database_names)
+    tf_stages(t, database_names)
+    tf_warehouses(t)
     tf_pipes(t, database_names)
