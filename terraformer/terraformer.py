@@ -185,6 +185,12 @@ def tf_file_format(t, database_names):
 def tf_warehouses(t):
     ## WAREHOUSES
     wh_data = snowflake_client.exec_sql_multi("show warehouses")
+    clustering_columns = [
+        "min_cluster_count",
+        "max_cluster_count",
+        "started_clusters",
+        "scaling_policy",
+    ]
     columns = [
         "name",
         "state",
@@ -216,7 +222,11 @@ def tf_warehouses(t):
         "uuid",
         # "scaling_policy",
     ]
-    wh_dicts = [{k: row[i] for i, k in enumerate(columns)} for row in wh_data]
+    try:
+        wh_dicts = [{k: row[i] for i, k in enumerate(columns + clustering_columns)} for row in wh_data]
+    except IndexError:
+        wh_dicts = [{k: row[i] for i, k in enumerate(columns)} for row in wh_data]
+
     for row in wh_dicts:
         addtl_params = snowflake_client.exec_sql_multi(
             f"show parameters in warehouse {row['name']};"
