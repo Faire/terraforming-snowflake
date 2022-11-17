@@ -185,20 +185,14 @@ def tf_file_format(t, database_names):
 def tf_warehouses(t):
     ## WAREHOUSES
     wh_data = snowflake_client.exec_sql_multi("show warehouses")
-    clustering_columns = [
-        "min_cluster_count",
-        "max_cluster_count",
-        "started_clusters",
-        "scaling_policy",
-    ]
     columns = [
         "name",
         "state",
         "type",
         "size",
-        # "min_cluster_count",
-        # "max_cluster_count",
-        # "started_clusters",
+        "min_cluster_count",
+        "max_cluster_count",
+        "started_clusters",
         "running",
         "queued",
         "is_default",
@@ -220,12 +214,39 @@ def tf_warehouses(t):
         "failed",
         "suspended",
         "uuid",
-        # "scaling_policy",
+        "scaling_policy",
+    ]
+    columns_wo_cluster = [
+        "name",
+        "state",
+        "type",
+        "size",
+        "running",
+        "queued",
+        "is_default",
+        "is_current",
+        "auto_suspend",
+        "auto_resume",
+        "available",
+        "provisioning",
+        "quiescing",
+        "other",
+        "created_on",
+        "resumed_on",
+        "updated_on",
+        "owner",
+        "comment",
+        "resource_monitor",
+        "actives",
+        "pendings",
+        "failed",
+        "suspended",
+        "uuid",
     ]
     try:
-        wh_dicts = [{k: row[i] for i, k in enumerate(columns + clustering_columns)} for row in wh_data]
-    except IndexError:
         wh_dicts = [{k: row[i] for i, k in enumerate(columns)} for row in wh_data]
+    except IndexError:
+        wh_dicts = [{k: row[i] for i, k in enumerate(columns_wo_cluster)} for row in wh_data]
 
     for row in wh_dicts:
         addtl_params = snowflake_client.exec_sql_multi(
