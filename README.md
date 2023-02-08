@@ -106,11 +106,11 @@ cd terraforming-snowflake/snowflake
 
 brew uninstall m1-terraform-provider-helper
 brew install m1-terraform-provider-helper
-m1-terraform-provider-helper install snowflake-labs/snowflake -v "v0.43.0"
+m1-terraform-provider-helper install snowflake-labs/snowflake -v "v0.56.3"
 
 terraform init
 
-# snowflake-labs/snowflake version 0.43.0 should be available for use in terraform now
+# snowflake-labs/snowflake version 0.56.3 should be available for use in terraform now
 # If you want to install a different version, try using m1-terraform-provider-helper 
 # to install the different version
 ```
